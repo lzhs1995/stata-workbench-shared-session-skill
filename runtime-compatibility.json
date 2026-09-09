@@ -1,0 +1,10 @@
+{
+  "schema": "stata-workbench-skill-compatibility/1",
+  "skillVersion": "0.1.0-dev.4",
+  "runtimeCandidateId": "visible-cowork-1-dev.6",
+  "runtimeRepository": "https://github.com/lzhs1995/stata-workbench-shared-session",
+  "requiredCoworkProtocol": "visible-cowork/1",
+  "runtimeBundleSha256": "3ecb55cdf508e796a238266c6897ff9c1307b73572588c5c5cf893563d81e859",
+  "liveAcceptance": "PENDING",
+  "platforms": {"macOS": "CANDIDATE", "Windows": "REFERENCE_ONLY_NOT_CERTIFIED"}
+}

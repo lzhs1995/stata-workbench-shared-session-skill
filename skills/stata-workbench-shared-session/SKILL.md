@@ -1,0 +1,85 @@
+---
+name: stata-workbench-shared-session
+description: Run annotated Stata do-files in the user's existing visible Workbench session with simultaneous source and Stata Terminal panes, automatic stage progression, human intervention, preserved memory, and independently checked execution receipts. Use for human/AI shared Stata coding and replayable handoff, not statistical model selection.
+---
+
+# Stata visible shared-session workbench
+
+This operating skill is versioned separately from the runtime. Read the installed
+runtime's current guide and this repository's `runtime-compatibility.json` first.
+Use the named existing instance, never a new Stata/backend/profile to evade a failure.
+Do not infer macOS paths from Windows examples or vice versa.
+
+## Default: automatic, visible, interruptible
+
+When asked to use this workbench, write/edit commented `.do` programs, show them,
+execute and verify stages automatically. **Do not require per-stage user approval.**
+Announce purpose and code changes briefly; the user may watch without replying.
+
+The executable version must be visible in the left editor group and the actual
+Stata Terminal webview in a separate right group at the same time. Same-group
+tabs, a saved log, another VS Code profile, or a later screenshot are not proof.
+Use the runtime co-working prepare/dispatch ticket through the matching client;
+do not fabricate a layout receipt from successful window count or HTTP status.
+The displayed execution snapshot and run manifest must have identical hashes.
+Keep editable source distinct from the frozen version actually executing.
+The candidate prepares any compatibility conversion before displaying code;
+the receipt archives that exact version as `runtime-execution.do`. Verify the
+author-input identity, displayed execution identity, working directory and wire
+command independently. Preparing the layout alone never means code executed.
+Also inspect runtime compatibility-copy evidence: an input hash does not certify
+the bytes of a rewritten temporary `.do`. `EXECUTED_SOURCE_IDENTITY_NOT_CERTIFIED`
+must stop dependent stages. Record both versions; do not rename that verdict PASS.
+
+If the user asks to pause, pause later stages immediately. If they ask to stop
+the active calculation, request the product's current-request cancellation and
+then verify settlement; do not kill/reset Stata. If they edit a file, preserve
+the change, wait for a saved version, compare it with the last executed version,
+recheck memory and dependencies, then create a new execution version. Never
+silently save/discard their dirty buffer. Human and AI submissions are serial.
+
+Losing visibility during execution is sticky evidence, not permission to steal
+focus repeatedly or rerun work. Let the current request settle unless canceled;
+pause future stages until the layout and user intervention state are reconciled.
+Opening the source afterward is review, not retroactive live verification.
+
+## Execute and verify
+
+Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
+Read [replay-and-data.md](references/replay-and-data.md) when delivering research
+programs that the user must rerun or when crossing CSV/R/Stata representations.
+
+1. Bind the exact profile, bridge owner and Stata PIDs; distinguish permission,
+   window visibility, execution readiness and co-working protocol readiness.
+2. Record original active frame, cwd and data signature; use unique task frames
+   and saved checkpoint inputs. Never `clear all`, `log close _all`, or overwrite
+   existing results just to make replay work.
+3. Prepare a task manifest: stage IDs, program, code dependencies, checkpoint
+   inputs, unique outputs, assertions. Use the matching client's `--task` or
+   `--file`. `--code` must be materialized as a readable do-file by the client.
+4. Read each result and actual outputs before progressing. Confirmed Stata errors
+   require a corrected version and inspection of partial effects. Unknown outcome
+   means **no resend** until it is resolved; it does not mean no execution.
+5. For handoff, test every declared entry twice including a real Run Current File
+   route when that is required. Compare outputs and preserved original state.
+   Do not certify an entire pipeline from one component's success.
+
+## Report four separate claims
+
+- Execution: bound runId/requestId/backend, actual return code and raw log.
+- Visibility: concurrently observed source/Terminal, including any interruption.
+- Replay: entry/dependency version, two separate runs and compared outputs.
+- Task completion: all agreed deliverables, not only code or model output.
+
+`PASS_VISIBLE_SHARED_RUN` from older clients proves transport, **not** live user
+visibility. `OBSERVED_VISIBLE` means software observed a layout, not that a human
+read or understood it. Skill validation is not product live acceptance.
+
+Do not claim permanent OS permission. Preserve -1743/-1744 and host identity;
+`SCREEN_LOCKED` is not a permission error or proof of zero Workbench windows.
+Do not disable locking or bypass authentication to continue visible execution.
+do not reset TCC, switch hosts, or restart an active research session as an
+automatic connection repair. See the runtime's maintained permission guide.
+
+Candidate status: this source release is not yet a live-certified runtime pair.
+Do not deploy or certify it based only on the offline tests.
