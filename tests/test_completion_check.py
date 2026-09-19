@@ -119,5 +119,28 @@ class CompletionTests(unittest.TestCase):
             self.write(root, values)
             self.assertEqual(completion.check_stage(root)["verdict"], "PASS_EXECUTION_AND_OBSERVED_VISIBILITY")
 
+    def test_empirical_membership_can_fail_an_otherwise_valid_execution_receipt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            self.write(root, self.fixture(root))
+            def artifact(name, text):
+                p = root / name
+                p.write_text(text)
+                return {"path": str(p), "sha256": hashlib.sha256(p.read_bytes()).hexdigest()}
+            csv = artifact("sample.csv", "id,x\na,1\nb,2\n")
+            contract = {"schema_version": 1, "task_id": "synthetic", "script": artifact("trace.do", "display 1"),
+                "inputs": [csv], "outputs": [csv], "runtime": {k: "recorded" for k in
+                ("session_id", "job_id", "transport", "source_revision", "installed_version", "loaded_version")},
+                "samples": [{"artifact": csv, "keys": ["id"], "expected_n": 2}]}
+            path = root / "trace.json"
+            path.write_text(json.dumps(contract))
+            self.assertEqual(completion.check_stage(root, path)["verdict"], "PASS_EXECUTION_AND_OBSERVED_VISIBILITY")
+            contract["samples"][0]["same_members_as"] = artifact("other.csv", "id,x\na,1\nc,2\n")
+            path.write_text(json.dumps(contract))
+            result = completion.check_stage(root, path)
+            self.assertEqual(result["verdict"], "FAIL")
+            self.assertIn("SAMPLE_MEMBERSHIP_MISMATCH", result["empirical_trace"]["errors"])
+            self.assertEqual(result["replay"], "NOT_PROVEN_BY_ONE_RECEIPT")
+
 
 if __name__ == "__main__": unittest.main()

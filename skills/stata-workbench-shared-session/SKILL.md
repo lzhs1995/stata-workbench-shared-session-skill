@@ -48,6 +48,8 @@ Opening the source afterward is review, not retroactive live verification.
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
+Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a
+submission manuscript's full data/result chain or responding to NLM discrepancies.
 
 1. Bind the exact profile, bridge owner and Stata PIDs; distinguish permission,
    window visibility, execution readiness and co-working protocol readiness.
