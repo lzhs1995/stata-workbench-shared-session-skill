@@ -1,3 +1,7 @@
+## 0.1.0-dev.5 — 2026-09-26
+
+Add compound result checks and explicit legacy/candidate runtime routing. The candidate protocol remains PENDING; no native Stata runtime upgrade or certification is implied.
+
 # Changelog
 
 ## 0.1.0-dev.2 — development, not live certified
