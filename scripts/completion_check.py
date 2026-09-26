@@ -1,6 +1,7 @@
 """Read-only independent receipt gate. Never executes, retries or alters Stata."""
 import argparse
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 import re
@@ -10,7 +11,7 @@ def read(path):
     return json.loads(Path(path).read_bytes())
 
 
-def check_stage(directory):
+def check_stage(directory, empirical_contract=None):
     root = Path(directory).resolve(strict=True)
     result = read(root / "result.json")
     before, after = result.get("before", {}), result.get("after", {})
@@ -89,14 +90,23 @@ def check_stage(directory):
         r.get("execution", {}).get("path") == frozen.get("program")
         and r.get("execution", {}).get("sha256") == frozen.get("sha256") for r in records)
     # Scope explicitly excludes claims that a person watched, or replay ran twice.
+    empirical = None
+    if empirical_contract:
+        spec = importlib.util.spec_from_file_location("stata_empirical_trace", Path(__file__).with_name("empirical_trace.py"))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        empirical = module.audit_contract(read(empirical_contract))
+        checks["empiricalTrace"] = empirical["pass"]
     return {"verdict": "PASS_EXECUTION_AND_OBSERVED_VISIBILITY" if all(checks.values()) else "FAIL",
-            "checks": checks, "replay": "NOT_PROVEN_BY_ONE_RECEIPT", "humanWatched": "NOT_MEASURABLE"}
+            "checks": checks, "empirical_trace": empirical,
+            "replay": "NOT_PROVEN_BY_ONE_RECEIPT", "humanWatched": "NOT_MEASURABLE"}
 
 
 if __name__ == "__main__":
-    p = argparse.ArgumentParser(); p.add_argument("receipt", type=Path); a = p.parse_args()
+    p = argparse.ArgumentParser(); p.add_argument("receipt", type=Path)
+    p.add_argument("--empirical-contract", type=Path); a = p.parse_args()
     try:
-        value = check_stage(a.receipt)
+        value = check_stage(a.receipt, a.empirical_contract)
     except Exception as e:
         value = {"verdict": "FAIL", "error": str(e)}
     print(json.dumps(value, ensure_ascii=False, indent=2))

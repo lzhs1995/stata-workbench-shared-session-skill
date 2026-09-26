@@ -33,6 +33,11 @@ def install(prefix, user_root, apply=False):
     # Copy only tracked skill/runtime contract, not receipts or arbitrary scratch.
     dest.mkdir(parents=True, exist_ok=False)
     shutil.copytree(source, dest / "skills/stata-workbench-shared-session")
+    # Receipt tools must be reachable from the installed skill, not only a clone.
+    checks = dest / "skills/stata-workbench-shared-session/scripts"
+    checks.mkdir(exist_ok=True)
+    for name in ("completion_check.py", "empirical_trace.py"):
+        shutil.copy2(ROOT / "scripts" / name, checks / name)
     shutil.copy2(ROOT / "runtime-compatibility.json", dest / "runtime-compatibility.json")
     for row in plan["routes"]:
         row["existed"] = Path(row["path"]).exists() or Path(row["path"]).is_symlink()

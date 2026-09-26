@@ -7,6 +7,8 @@ description: Run annotated Stata do-files in the user's existing visible Workben
 
 This operating skill is versioned separately from the runtime. Read the installed
 runtime's current guide and this repository's `runtime-compatibility.json` first.
+Read [runtime routing](references/runtime-routing.md) before adopting a candidate
+protocol or upgrading; a PENDING pair does not replace a working backend.
 Use the named existing instance, never a new Stata/backend/profile to evade a failure.
 Do not infer macOS paths from Windows examples or vice versa.
 
@@ -19,8 +21,10 @@ Announce purpose and code changes briefly; the user may watch without replying.
 The executable version must be visible in the left editor group and the actual
 Stata Terminal webview in a separate right group at the same time. Same-group
 tabs, a saved log, another VS Code profile, or a later screenshot are not proof.
-Use the runtime co-working prepare/dispatch ticket through the matching client;
-do not fabricate a layout receipt from successful window count or HTTP status.
+Use a co-working prepare/dispatch ticket only with its verified matching runtime.
+For a legacy formal runtime, use its documented saved-file route and record
+transport and actual visibility separately. Do not fabricate candidate tickets
+or a layout receipt from window count or HTTP status.
 The displayed execution snapshot and run manifest must have identical hashes.
 Keep editable source distinct from the frozen version actually executing.
 The candidate prepares any compatibility conversion before displaying code;
@@ -48,6 +52,8 @@ Opening the source afterward is review, not retroactive live verification.
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
+Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a
+submission manuscript's full data/result chain or responding to NLM discrepancies.
 
 1. Bind the exact profile, bridge owner and Stata PIDs; distinguish permission,
    window visibility, execution readiness and co-working protocol readiness.
@@ -81,5 +87,6 @@ Do not disable locking or bypass authentication to continue visible execution.
 do not reset TCC, switch hosts, or restart an active research session as an
 automatic connection repair. See the runtime's maintained permission guide.
 
-Candidate status: this source release is not yet a live-certified runtime pair.
-Do not deploy or certify it based only on the offline tests.
+Candidate status: the proposed runtime pair is not yet live-certified. The skill
+and offline checks may be installed separately; do not deploy or certify the
+candidate runtime from these tests. Keep existing fixed runtime paths.
