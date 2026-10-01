@@ -1,5 +1,9 @@
 # Executable workflow contract
 
+Read [execution policy and concurrency](execution-policy-and-concurrency.md) for
+user-permitted hiding and resource coordination. The commands below require the
+matching candidate client; they are not new flags for a legacy fixed client.
+
 Use the explicit product tools directory from local installation configuration,
 not a guessed port/profile. Mac defaults on a fresh public install differ from
 an existing formal rc70 profile. No tool invocation may create a replacement

@@ -1,6 +1,6 @@
 ---
 name: stata-workbench-shared-session
-description: Run annotated Stata do-files in the user's existing visible Workbench session with simultaneous source and Stata Terminal panes, automatic stage progression, human intervention, preserved memory, and independently checked execution receipts. Use for human/AI shared Stata coding and replayable handoff, not statistical model selection.
+description: Run annotated Stata do-files in the user's existing shared Workbench session with automatic stage progression, preserved memory and checked receipts. Show source and Stata Terminal by default; honor explicit permission to cover or hide the window. Use for human/AI shared Stata coding, replayable handoff and correctly scoped instance coordination, not statistical model selection.
 ---
 
 # Stata visible shared-session workbench
@@ -10,6 +10,8 @@ runtime's current guide and this repository's `runtime-compatibility.json` first
 Read [runtime routing](references/runtime-routing.md) before adopting a candidate
 protocol or upgrading; a PENDING pair does not replace a working backend.
 Use the named existing instance, never a new Stata/backend/profile to evade a failure.
+For deliberately requested multiple instances, read [execution policy and concurrency](references/execution-policy-and-concurrency.md);
+each instance needs its own supported identity binding, state, outputs and queue.
 Do not infer macOS paths from Windows examples or vice versa.
 
 ## Default: automatic, visible, interruptible
@@ -18,7 +20,7 @@ When asked to use this workbench, write/edit commented `.do` programs, show them
 execute and verify stages automatically. **Do not require per-stage user approval.**
 Announce purpose and code changes briefly; the user may watch without replying.
 
-The executable version must be visible in the left editor group and the actual
+Under the default visible policy, the executable version must be visible in the left editor group and the actual
 Stata Terminal webview in a separate right group at the same time. Same-group
 tabs, a saved log, another VS Code profile, or a later screenshot are not proof.
 Use a co-working prepare/dispatch ticket only with its verified matching runtime.
@@ -42,10 +44,13 @@ the change, wait for a saved version, compare it with the last executed version,
 recheck memory and dependencies, then create a new execution version. Never
 silently save/discard their dirty buffer. Human and AI submissions are serial.
 
-Losing visibility during execution is sticky evidence, not permission to steal
-focus repeatedly or rerun work. Let the current request settle unless canceled;
-pause future stages until the layout and user intervention state are reconciled.
-Opening the source afterward is review, not retroactive live verification.
+Losing visibility is recorded evidence, not permission to steal focus or rerun
+work. Let the current request settle unless canceled. If the user permits window
+occlusion, hiding or minimization, continue non-UI stages through the same bound
+Workbench using a matching client; do not add a visibility-only pause. Record
+physical visibility separately and preserve old failures. Under a strict visible
+policy, reconcile the layout before later stages. Opening source afterward is
+review, not retroactive live verification. Hidden is not unresponsive or closed.
 
 ## Execute and verify
 
@@ -66,14 +71,16 @@ submission manuscript's full data/result chain or responding to NLM discrepancie
 4. Read each result and actual outputs before progressing. Confirmed Stata errors
    require a corrected version and inspection of partial effects. Unknown outcome
    means **no resend** until it is resolved; it does not mean no execution.
-5. For handoff, test every declared entry twice including a real Run Current File
-   route when that is required. Compare outputs and preserved original state.
+5. For handoff, verify the promised replay entries and reuse already validated
+   runs. Where two executions or Run Current File are required, compare outputs
+   and preserved original state; do not repeat research just to fill a new checker.
    Do not certify an entire pipeline from one component's success.
 
 ## Report four separate claims
 
 - Execution: bound runId/requestId/backend, actual return code and raw log.
 - Visibility: concurrently observed source/Terminal, including any interruption.
+  Record the user-authorized policy; permitted hiding never means observed visible.
 - Replay: entry/dependency version, two separate runs and compared outputs.
 - Task completion: all agreed deliverables, not only code or model output.
 
