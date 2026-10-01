@@ -55,6 +55,8 @@ review, not retroactive live verification. Hidden is not unresponsive or closed.
 ## Execute and verify
 
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
+
+Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
 Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a
