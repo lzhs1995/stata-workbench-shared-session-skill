@@ -1,3 +1,10 @@
+## Operating guide 2026-10-01
+
+Honor explicit permission to cover, hide or minimize the bound Workbench window,
+with execution and physical visibility reported separately. Add instance isolation,
+UI coordination, conditional model output and no-duplicate resume guidance.
+Documentation only; keep the pinned runtime/client and existing acceptance limits.
+
 ## 0.1.0-dev.5 — 2026-09-26
 
 Add compound result checks and explicit legacy/candidate runtime routing. The candidate protocol remains PENDING; no native Stata runtime upgrade or certification is implied.
