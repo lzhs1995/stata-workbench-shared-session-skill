@@ -1,5 +1,7 @@
 # Executable workflow contract
 
+Read [storage and log recovery](storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
+
 Read [execution policy and concurrency](execution-policy-and-concurrency.md) for
 user-permitted hiding and resource coordination. The commands below require the
 matching candidate client; they are not new flags for a legacy fixed client.
