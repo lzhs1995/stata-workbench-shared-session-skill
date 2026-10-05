@@ -57,6 +57,7 @@ review, not retroactive live verification. Hidden is not unresponsive or closed.
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 
 Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
+For graph/export timeouts, read [native export recovery and real-file delivery](references/native-export-and-real-file-delivery.md): inspect nested DO coverage and distinguish transport settlement from native termination.
 Honor the user's free-space reserve before large writes: back up completed large files to the dedicated task folder before the projected peak crosses it, keeping higher stage budgets and verified-reclamation requirements.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.

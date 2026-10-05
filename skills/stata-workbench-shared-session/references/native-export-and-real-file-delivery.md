@@ -14,6 +14,54 @@ not establish native recovery. Keep supported recovery, installation and actual
 state restoration separately evidenced; do not repeatedly send breaks or reset
 shared memory merely because the transport has settled.
 
+## Check nested DO coverage before calling a raster export safe
+
+Record the actual wire command, cwd and referenced execution files, not just
+the user-facing DO. A saved shared-state wrapper can call another export DO.
+One installed version prepared only the first reference: its failed request
+reported zero Darwin conversions although the nested export file contained
+raster commands. An offline replay reproduced the gap; the recursive candidate
+reached the inner exports. These findings support an adapter defect in that
+request, not a diagnosis that every VS Code graph failure has the same cause.
+
+The runtime candidate follows literal double-quoted, line-start `.do` calls,
+with common capture/quietly/noisily prefixes, into temporary execution copies.
+It preserves author sources, excludes comments/quoted examples, and rejects
+missing files, cycles, ambiguous relative cwd, and bounded size/depth/count
+overruns. It is not a full Stata parser. Macro paths, `run`, `include`, semicolon
+delimiters and other dynamic command forms are not full coverage; inspect the
+actual export file and record `partial-static` rather than claiming protection.
+Files generated during execution need a later separately prepared stage.
+
+Keep the same-request `sourceCompatibility` / `darwinCompatibility`, original
+and temporary hashes, wire, output files and native result together. An empty
+replacement list does not prove a nested program has no raster export. A
+failed descendant transformation must stop submission, even under `capture do`.
+Do not test a suspected native PNG hang again in the research backend. A scoped
+SVG/converter output must be checked as an image; it does not establish native
+PNG pixel identity or remove every possible operating-system graphics failure.
+
+When the client returns `_httperror`, preserve its original bytes and extract
+runId/requestId/rc/logPath as diagnostics only. Do not merge conflicting IDs,
+promote an HTTP failure to success, or treat absent IDs as zero submission.
+Check original native termination before continuing. Updating the repository,
+installing the package, loading it, and validating real output are distinct
+steps: a PR or offline PASS does not mean the active extension is repaired.
+
+A real saved-GPH recovery through the existing Workbench produced a decoded,
+nonblank 1200 × 800 RGB PNG with Stata rc=0, using frozen SVG/converter execution
+copies and no data/model recalculation. The earlier isolated attempt failed at
+SVG export with `could not find Graph window`, r(693), after `graph use ..., nodraw`.
+The corrected copy loaded/drew the private graph without `nodraw`. Inspect the
+actual log: r(693) is not by itself proof of insufficient disk space. Keep the
+failed attempt and do not repeat it as an unknown retry.
+
+The prepared-copy route is distinct from installing or loading the candidate
+extension; that installation was not part of this live check. One decoded PNG
+does not certify all missing graphs or the full nested data chain. Stata graph
+drawing is also distinct from OS window focus: honor explicit permission to
+cover/hide the Workbench, while retaining instance and terminal-state checks.
+
 ## Separate data delivery from graph conversion
 
 - Save DTA checkpoints before graph export. Give precision CSV exports their own
