@@ -98,5 +98,26 @@ worker is failure evidence, not a completed output eligible for cleanup. Keep
 originals, frozen results and failure receipts. Continue independent offline
 work while the native operation remains unresolved.
 
+## Finish only the missing outputs and verify the shared state
+
+After the one-image recovery, a single existing-Workbench request produced the
+remaining 23 PNG/GPH pairs from the already audited saved DTA. All 24 PNGs
+decoded and were nonblank; a contact sheet was visually checked. Native return
+was 0 and the wrapper's original-data signature, frame, graph inventory and
+current-graph restoration assertions passed. The same backend was ready after
+completion. No successful cleaning, score calculation or model was repeated.
+
+Bind the saved input to its earlier audit hash, not merely its current file
+name. Reuse already accepted outputs instead of regenerating them. Use private
+graph names and a separate session-protection wrapper; retain readable author
+plotting commands and explain stale titles in comments. The author's title
+"Comparison of Three Graphs" was retained even though its command combined two
+panels. Plot production and scientific interpretation are separate checks.
+
+Record all image dimensions, hashes and decode results, plus native terminal
+and restoration evidence. Contact-sheet inspection is not a proof of native
+PNG pixel identity or of every unseen graphics object. This recovery did not
+install/reload the candidate extension or certify the full research chain.
+
 These lessons add guidance only. They do not install a runtime, recover a session,
 certify all hidden-window states or establish multi-instance Stata concurrency.
