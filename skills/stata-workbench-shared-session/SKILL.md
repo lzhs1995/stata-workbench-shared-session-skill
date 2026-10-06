@@ -59,6 +59,7 @@ Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
 For graph/export timeouts, read [native export recovery and real-file delivery](references/native-export-and-real-file-delivery.md): inspect nested DO coverage and distinguish transport settlement from native termination.
 For table stages, the same reference covers existing Mata objects, macro-list membership versus values, RTF Chinese encoding, and complete preserve/restore boundaries. Retain author calculations and historical comments; report numerical differences explicitly.
+The same reference also covers column order, recodes outside preserve/restore, historical coding direction, CSV precision and rank ties, with bounded 84-graph recovery evidence.
 Honor the user's free-space reserve before large writes: back up completed large files to the dedicated task folder before the projected peak crosses it, keeping higher stage budgets and verified-reclamation requirements.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
