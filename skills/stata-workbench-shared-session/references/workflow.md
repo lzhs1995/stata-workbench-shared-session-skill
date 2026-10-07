@@ -74,3 +74,22 @@ and version evidence. Do not globally enable abbreviations or rewrite unrelated
 identifiers to make a stage pass. Keep review-only annotated files separate from
 executable stages; matching text inside a nested block comment is not an active
 command or evidence of dynamic coverage.
+
+## State-preserving diagnostics and restoration pilots
+
+Persist the exact entry RNG state, sorting RNG state, working directory and
+relevant object inventory before a diagnostic can change them. A diagnostic
+that verifies payload equality can still fail its preservation contract. Check
+both contracts, including cleanup, on success and captured error paths.
+
+Distinguish serialization/readback, actual loading under temporary names,
+restoration of selected entry values, and restoration of the entire session.
+A successful Mata temporary-load pilot does not prove preservation of all
+programs, results, settings, frames or open handles, and does not authorize a
+plugin reload. Record precisely which objects and settings were checked.
+
+If preservation fails, retain that run as failed and inspect its partial
+effects. Prepare a versioned successor rather than replaying the request.
+Never substitute an older backup for an unrecorded exact entry RNG state or
+claim that the successor repairs the earlier lost state. In particular,
+sorting RNG state must be checked separately from the ordinary RNG state.
