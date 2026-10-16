@@ -5,6 +5,21 @@ description: Run annotated Stata do-files in the user's existing shared Workbenc
 
 # Stata visible shared-session workbench
 
+## Recovery first: caller trust, terminal and original instance
+
+For a cmux desktop rejection, `stdout is not a terminal`, onboarding loop or
+missing original listener, first read [the complete recovery record](references/desktop-auth-terminal-recovery.md).
+Classify the actual error before requesting permission or restart: -67050 caller
+signature, RTK child descriptors, helper Accessibility/Screen Recording, original
+profile and backend readiness are separate gates. Verify the running executable,
+the exact interactive launcher path and a real desktop read. Preserve the same
+conversation, pending receipts and completed research; rebind a new backend
+generation without replaying consumed restores. A default Code window or
+`attachment=attached` never establishes Workbench recovery. Do not bypass trust,
+launch a standalone helper, edit TCC, or ask again for completed authorization.
+Record complete local evidence, update the shared guidance, then continue the
+first unsubmitted stage in the original authorized profile.
+
 This operating skill is versioned separately from the runtime. Read the installed
 runtime's current guide and this repository's `runtime-compatibility.json` first.
 Read [runtime routing](references/runtime-routing.md) before adopting a candidate

@@ -7,6 +7,9 @@ work. Runtime: https://github.com/lzhs1995/stata-workbench-shared-session.
 `visible-cowork/1` protocol. Old transport-only PASS cannot certify this workflow.
 
 Start with [SKILL.md](skills/stata-workbench-shared-session/SKILL.md).
+For macOS/cmux recovery, read the [signature, terminal and permission incident record](skills/stata-workbench-shared-session/references/desktop-auth-terminal-recovery.md).
+It includes the actual RTK TTY repair, original-session resume checks and separate
+desktop/profile/backend acceptance. Documentation does not certify a live runtime.
 No per-stage approval prompts: user interventions are explicit controls.
 By default, show the exact execution do-file and real Stata Terminal side by side.
 If the user permits covering, hiding or minimizing the existing window, keep the
