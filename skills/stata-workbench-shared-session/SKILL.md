@@ -20,6 +20,12 @@ launch a standalone helper, edit TCC, or ask again for completed authorization.
 Record complete local evidence, update the shared guidance, then continue the
 first unsubmitted stage in the original authorized profile.
 
+A recovered host may lazily create its backend on one documented display control.
+Missing old locks require deleted-open-owner checks and a separate new inode
+binding; never delete a held lock or bypass source/receipt checks. The recorded
+bootstrap passed, but was not research. Two Code windows and collaboration
+caller authentication require their own evidence; see section 12 of the guide.
+
 This operating skill is versioned separately from the runtime. Read the installed
 runtime's current guide and this repository's `runtime-compatibility.json` first.
 Read [runtime routing](references/runtime-routing.md) before adopting a candidate
