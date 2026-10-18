@@ -77,12 +77,27 @@ review, not retroactive live verification. Hidden is not unresponsive or closed.
 
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 
+Read [shared-session execution and delivery lessons](references/shared-session-delivery-lessons.md)
+before editing author DO files or delivering saved data. Preserve filenames,
+variables, comments, structure and calculation order; explain minimal corrections
+near the changed line. Inventory actual executed save paths, including Stata's
+default `.dta` extension, with source expressions and verified output evidence.
+Reconcile provisional or failed transport responses against the original request;
+do not resend an uncertain submission or rerun accepted data to repair an inventory.
+
 Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
 For graph/export timeouts, read [native export recovery and real-file delivery](references/native-export-and-real-file-delivery.md): inspect nested DO coverage and distinguish transport settlement from native termination.
 For table stages, the same reference covers existing Mata objects, macro-list membership versus values, RTF Chinese encoding, and complete preserve/restore boundaries. Retain author calculations and historical comments; report numerical differences explicitly.
 The same reference also covers column order, recodes outside preserve/restore, historical coding direction, CSV precision and rank ties, with bounded 84-graph recovery evidence. Before installing a candidate, use its installed-repair retention check: preserve existing finalizer/UI/log fixes, verify the final VSIX modules, and keep loaded-runtime/live-output acceptance separate.
 It also covers DOCX content-types namespace compatibility, consecutive helper calls, office loading versus page acceptance, and complete source hashes bound to the actual submitted request. A successful diagnostic copy does not retroactively accept the original file or require repeating Stata.
-Honor the user's free-space reserve before large writes: back up completed large files to the dedicated task folder before the projected peak crosses it, keeping higher stage budgets and verified-reclamation requirements.
+Honor explicit user storage limits before large writes. Separately label any
+agent-selected reserve or stage budget as an implementation assumption, with its
+source, units and projected peak. The historical 20/23 GB incident budgets were
+task-local assumptions, not user requirements or universal thresholds; see the
+corrected recovery record, section 8. Reassess them against remaining work without
+silently changing a live controller. Back up and verify completed large files
+before any authorized reclamation; a documentation correction grants no deletion
+authority.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
 Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a

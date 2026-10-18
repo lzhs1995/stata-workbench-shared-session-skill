@@ -15,6 +15,9 @@ By default, show the exact execution do-file and real Stata Terminal side by sid
 If the user permits covering, hiding or minimizing the existing window, keep the
 shared execution and identity checks while recording physical visibility separately.
 Read [execution policy and concurrency](skills/stata-workbench-shared-session/references/execution-policy-and-concurrency.md).
+Read [execution and delivery lessons](skills/stata-workbench-shared-session/references/shared-session-delivery-lessons.md)
+for author DO preservation, actual saved-data inventories, original-request
+settlement and correctly attributed resource budgets.
 This documentation update does not add hidden-mode or multi-instance support to
 an incompatible client, change the runtime, or certify concurrent Stata instances.
 
