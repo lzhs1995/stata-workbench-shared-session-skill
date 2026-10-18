@@ -90,14 +90,17 @@ For graph/export timeouts, read [native export recovery and real-file delivery](
 For table stages, the same reference covers existing Mata objects, macro-list membership versus values, RTF Chinese encoding, and complete preserve/restore boundaries. Retain author calculations and historical comments; report numerical differences explicitly.
 The same reference also covers column order, recodes outside preserve/restore, historical coding direction, CSV precision and rank ties, with bounded 84-graph recovery evidence. Before installing a candidate, use its installed-repair retention check: preserve existing finalizer/UI/log fixes, verify the final VSIX modules, and keep loaded-runtime/live-output acceptance separate.
 It also covers DOCX content-types namespace compatibility, consecutive helper calls, office loading versus page acceptance, and complete source hashes bound to the actual submitted request. A successful diagnostic copy does not retroactively accept the original file or require repeating Stata.
-Honor explicit user storage limits before large writes. Separately label any
-agent-selected reserve or stage budget as an implementation assumption, with its
-source, units and projected peak. The historical 20/23 GB incident budgets were
-task-local assumptions, not user requirements or universal thresholds; see the
-corrected recovery record, section 8. Reassess them against remaining work without
-silently changing a live controller. Back up and verify completed large files
-before any authorized reclamation; a documentation correction grants no deletion
-authority.
+Honor explicit user storage limits before large writes. In the documented task,
+the user explicitly requires a 20 GB (20,000,000,000-byte) reserve; the earlier
+wording incorrectly called it an agent assumption. The historical 23 GB
+(23,000,000,000-byte) scientific-submission budget is an implementation budget.
+The new plugin acceptance plan budgets the 20 GB reserve plus 500 MB, totaling
+20,500,000,000 bytes. These task budgets are not universal skill installation
+thresholds; see the corrected recovery record, section 8. Record each source,
+units and projected peak without silently changing a live controller. Below the
+user's reserve, actively manage task storage and continue independent work.
+Back up and verify completed large files before any authorized reclamation;
+uploading alone frees no space, and this correction grants no deletion authority.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
 Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a
