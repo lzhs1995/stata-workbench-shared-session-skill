@@ -85,6 +85,18 @@ default `.dta` extension, with source expressions and verified output evidence.
 Reconcile provisional or failed transport responses against the original request;
 do not resend an uncertain submission or rerun accepted data to repair an inventory.
 
+
+For candidate graphics acceptance, use the same reference's runtime/configuration
+isolation and complete graph-run checks. A separate profile is insufficient:
+verify the selected config/command/runtime and scoped before/after sentinels.
+Use a small Workbench Run Current File fixture, fully decode and view its PNGs,
+and verify an actual GPH reload under the same request. Record body, each cleanup
+operation and log-close return codes separately; retain original-frame identity
+and the declared restoration scope. Read post-log-close markers from that
+request's Terminal, not the closed file log. Keep source, package, installed,
+loaded and native-accepted states separate; label unrun checks and SVG fallback
+honestly. This guidance does not install or certify a candidate runtime.
+
 Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
 For graph/export timeouts, read [native export recovery and real-file delivery](references/native-export-and-real-file-delivery.md): inspect nested DO coverage and distinguish transport settlement from native termination.
 For table stages, the same reference covers existing Mata objects, macro-list membership versus values, RTF Chinese encoding, and complete preserve/restore boundaries. Retain author calculations and historical comments; report numerical differences explicitly.
