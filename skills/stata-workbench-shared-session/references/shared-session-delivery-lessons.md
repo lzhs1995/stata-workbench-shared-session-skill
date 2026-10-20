@@ -79,6 +79,12 @@ Do not assume all execution routes return the same fields. Agent commands emit D
 The bounded shared Workbench fixture completed once: HTTP 200, final rc 0, native GPH save/reload, two fully decoded and visually reviewed 800×480 PNGs with identical pixels, and zero return codes for body, frame restoration, private-object cleanup and log close. Both PNGs used SVG+sips compatibility. Record that rendering route explicitly; native Stata bitmap export and a retained graph-panel display were not established. These results apply to the tested private candidate, not every installed extension or active backend.
 
 
+### Trace the actual graph preview entry
+
+Before instructing a user to open the graph panel, verify that the loaded version exposes a command or a clickable artifact route which creates it. In the inspected candidate, automatic graph batches intentionally kept the Terminal visible when no Graphs panel existed. Its Terminal artifact click dispatched `openArtifact` through `vscode.open`; that opened a file preview, not the Stata Graphs webview. The panel itself had no user-facing open command. A suggestion to “open the panel first” was therefore unsupported.
+
+Trace both the webview click message and its extension handler. Keep automatic routing, an explicit user click, an editor file preview, and a retained Graphs panel as separate acceptance claims. An explicit click may reveal an existing artifact without submitting Stata code or rerunning the dissertation. Preserve the artifact path and distinguish a preview identity from its original execution request. Test image, non-image, help and missing-file behavior when changing this route. Verify the actual loaded UI separately from source-level tests; a source patch does not establish native panel rendering.
+
 ### Small executor pools in live-session regression tests
 
 When concurrent pipe writers wait on a blocking lock inside executor threads, a small thread pool can run out of threads for the response reader. Queue writers with an asynchronous lock before thread submission, while retaining ownership until writes or cancellation settle. Test with a fixed small pool and more large requests than available threads; preserve a bounded failing control rather than only increasing the CI timeout. Recognize the complete deployed session class during upgrades. A later concurrency correction tested with stub workers does not retroactively change the version used for earlier live PNG/GPH evidence.
