@@ -5,6 +5,31 @@ description: Run annotated Stata do-files in the user's existing shared Workbenc
 
 # Stata visible shared-session workbench
 
+## Real-run lessons: preserve code and verify the actual route
+
+Read [shared execution and delivery lessons](references/shared-session-delivery-lessons.md#validate-upgrades-and-the-actual-execution-protocol) before diagnosing checkpoint or graph failures. A graph-name rewrite must preserve `st_isname()`, `varname()` and Stata macros. Verify the complete upgraded runtime, not a comment marker or an isolated helper. Agent commands and Run Current File have different completion fields; reconcile an incorrect verifier against the original request rather than resending it. The documented PNG/GPH test passed through SVG+sips compatibility and does not establish native Stata bitmap recovery.
+
+## Recovery first: caller trust, terminal and original instance
+
+For a cmux desktop rejection, `stdout is not a terminal`, onboarding loop or
+missing original listener, first read [the complete recovery record](references/desktop-auth-terminal-recovery.md).
+Classify the actual error before requesting permission or restart: -67050 caller
+signature, RTK child descriptors, helper Accessibility/Screen Recording, original
+profile and backend readiness are separate gates. Verify the running executable,
+the exact interactive launcher path and a real desktop read. Preserve the same
+conversation, pending receipts and completed research; rebind a new backend
+generation without replaying consumed restores. A default Code window or
+`attachment=attached` never establishes Workbench recovery. Do not bypass trust,
+launch a standalone helper, edit TCC, or ask again for completed authorization.
+Record complete local evidence, update the shared guidance, then continue the
+first unsubmitted stage in the original authorized profile.
+
+A recovered host may lazily create its backend on one documented display control.
+Missing old locks require deleted-open-owner checks and a separate new inode
+binding; never delete a held lock or bypass source/receipt checks. The recorded
+bootstrap passed, but was not research. Two Code windows and collaboration
+caller authentication require their own evidence; see section 12 of the guide.
+
 This operating skill is versioned separately from the runtime. Read the installed
 runtime's current guide and this repository's `runtime-compatibility.json` first.
 Read [runtime routing](references/runtime-routing.md) before adopting a candidate
@@ -56,8 +81,42 @@ review, not retroactive live verification. Hidden is not unresponsive or closed.
 
 Read [workflow.md](references/workflow.md) for the exact task/receipt contract.
 
+Read [shared-session execution and delivery lessons](references/shared-session-delivery-lessons.md)
+before editing author DO files or delivering saved data. Preserve filenames,
+variables, comments, structure and calculation order; explain minimal corrections
+near the changed line. Inventory actual executed save paths, including Stata's
+default `.dta` extension, with source expressions and verified output evidence.
+Reconcile provisional or failed transport responses against the original request;
+do not resend an uncertain submission or rerun accepted data to repair an inventory.
+
+
+For candidate graphics acceptance, use the same reference's runtime/configuration
+isolation and complete graph-run checks. A separate profile is insufficient:
+verify the selected config/command/runtime and scoped before/after sentinels.
+Use a small Workbench Run Current File fixture, fully decode and view its PNGs,
+and verify an actual GPH reload under the same request. Record body, each cleanup
+operation and log-close return codes separately; retain original-frame identity
+and the declared restoration scope. Read post-log-close markers from that
+request's Terminal, not the closed file log. Keep source, package, installed,
+loaded and native-accepted states separate; label unrun checks and SVG fallback
+honestly. This guidance does not install or certify a candidate runtime.
+
 Read [storage and log recovery](references/storage-and-log-recovery.md) for disk budgets, verified backup and SMCL marker reconciliation.
-Honor the user's free-space reserve before large writes: back up completed large files to the dedicated task folder before the projected peak crosses it, keeping higher stage budgets and verified-reclamation requirements.
+For graph/export timeouts, read [native export recovery and real-file delivery](references/native-export-and-real-file-delivery.md): inspect nested DO coverage and distinguish transport settlement from native termination.
+For table stages, the same reference covers existing Mata objects, macro-list membership versus values, RTF Chinese encoding, and complete preserve/restore boundaries. Retain author calculations and historical comments; report numerical differences explicitly.
+The same reference also covers column order, recodes outside preserve/restore, historical coding direction, CSV precision and rank ties, with bounded 84-graph recovery evidence. Before installing a candidate, use its installed-repair retention check: preserve existing finalizer/UI/log fixes, verify the final VSIX modules, and keep loaded-runtime/live-output acceptance separate.
+It also covers DOCX content-types namespace compatibility, consecutive helper calls, office loading versus page acceptance, and complete source hashes bound to the actual submitted request. A successful diagnostic copy does not retroactively accept the original file or require repeating Stata.
+Honor explicit user storage limits before large writes. In the documented task,
+the user explicitly requires a 20 GB (20,000,000,000-byte) reserve; the earlier
+wording incorrectly called it an agent assumption. The historical 23 GB
+(23,000,000,000-byte) scientific-submission budget is an implementation budget.
+The new plugin acceptance plan budgets the 20 GB reserve plus 500 MB, totaling
+20,500,000,000 bytes. These task budgets are not universal skill installation
+thresholds; see the corrected recovery record, section 8. Record each source,
+units and projected peak without silently changing a live controller. Below the
+user's reserve, actively manage task storage and continue independent work.
+Back up and verify completed large files before any authorized reclamation;
+uploading alone frees no space, and this correction grants no deletion authority.
 Read [replay-and-data.md](references/replay-and-data.md) when delivering research
 programs that the user must rerun or when crossing CSV/R/Stata representations.
 Read [empirical-lineage.md](references/empirical-lineage.md) when verifying a

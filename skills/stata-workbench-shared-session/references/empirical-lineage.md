@@ -1,5 +1,8 @@
 # Empirical evidence and refinement
 
+For native export failures and chapter folders containing actual data, also read
+[native export failures and real-file delivery](native-export-and-real-file-delivery.md).
+
 Trace the original manuscript's claims, tables and figures through hashed data,
 cleaning/variable code, sample keys, model specifications and actual outputs.
 Refinement does not mean deleting text first or automatically rerunning every

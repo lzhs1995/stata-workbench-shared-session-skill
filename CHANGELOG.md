@@ -1,3 +1,13 @@
+## Recovery guide 2026-10-17
+
+Record the three-stage cmux incident: an ad-hoc Codex caller rejected by -67050,
+RTK piping interactive stdout/stderr, and remaining helper onboarding. Add the
+verified controlling-terminal repair, exact signing requirement syntax, original
+session preservation and new Workbench generation checks. Distinguish actual
+desktop success from a default Code window and the still-unrestored original
+listener. Preserve failed attempts and corrections. Documentation only; no
+extension reload, research replay or collaboration-transport change.
+
 ## Operating guide 2026-10-01
 
 Honor explicit permission to cover, hide or minimize the bound Workbench window,
