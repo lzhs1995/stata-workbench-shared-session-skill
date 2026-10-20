@@ -57,3 +57,23 @@ Fully decode each PNG after a file-integrity check and inspect the rendered imag
 Record the body return code separately from each private-graph deletion, original-frame restoration and private-frame deletion. Attempt subsequent cleanup even after an earlier cleanup error. Verify the restored frame identity and propagate failures: preserve the body error first, otherwise the first cleanup error, then a log-close error. Markers printed after closing a file log belong to the same request's Terminal evidence. Match displayed output rather than echoed source commands. Successful cleanup proves only its declared state scope; it is not complete shared-session equivalence.
 
 Report candidate source checks, final-package contents, installed files, the actually loaded host/runtime, and native acceptance as separate states. A source fix is not necessarily in an earlier package; a package or launch receipt does not prove the new runtime executed the fixture. Keep unrun checks explicitly unrun. A successful bounded graph test does not establish permanent recovery for every graphics route or scientific validity.
+
+## Diagnose native initialization before repeating graph jobs
+
+If the private worker starts and then a request fails before user code, preserve stderr and distinguish worker initialization, transport setup and pre-run checkpoint execution. Enable the existing Workbench output logging option in the private profile when its default filtering hides the cause. Do not repeatedly rerun the dissertation DO to diagnose an infrastructure failure.
+
+Actual Stata validation exposed invalid stored-result enumeration (`s(macros)`, then an incorrect Mata category `s`); the documented category is `st_dir("s()", "macro", "*")`. Validate literal Stata commands against the installed engine as well as mocks. An unsupported `log flush` later failed with r(198); a mock accepting that string is not syntax validation.
+
+A worker listener created by `asyncio.run(init_sessions())` is cancelled when that loop closes. Keep session startup and the MCP stdio server on one event loop, with owned shutdown. Worker death must fail pending calls; cancellation must drain the actual command before reporting completion. These are plugin runtime concerns, not reasons to rewrite the author's DO.
+
+When two authorized Claude sessions run concurrently, their shared metadata can change during an isolated Stata validation. Record the exact changed paths and keep attribution unknown unless proven. Separate that observation from the identity and integrity of the private Stata configuration/runtime; do not claim that every shared file was unchanged.
+
+## Validate upgrades and the actual execution protocol
+
+In the October 20 validation, the graph-name rewrite matched `name(` inside `st_isname()` and `varname()`. It caused a syntax error and silently replaced a local sample-variable reference. Correct the runtime's identifier boundary and preserve macro-dependent names instead of rewriting the author's DO around the defect. Keep ordinary graph aliases covered by regression tests.
+
+A notification helper's comment marker existed in an older body without completion-tail initialization. The runtime patch skipped that helper but installed a drain which referenced its missing variable. Match complete known legacy bodies, upgrade them explicitly, reject mixed or unknown bodies, and run a behavioral test of the complete production composition. Test both a fresh installation and the actual deployed upgrade path, including split markers and notification failures. Compile success does not prove these behaviors.
+
+Do not assume all execution routes return the same fields. Agent commands emit DONE and return their captured rc; Run Current File also prints a padded numeric RC marker. Its `requestId` differs from `runId`, and its debug path names a temporary execution copy rather than the original editor file. Bind each field to its documented counterpart, the fixed source hash and the prepared body hash. Preserve an incorrect verifier's receipt; append an evidence-bound reconciliation of the same request, without resending a successful job.
+
+The bounded shared Workbench fixture completed once: HTTP 200, final rc 0, native GPH save/reload, two fully decoded and visually reviewed 800×480 PNGs with identical pixels, and zero return codes for body, frame restoration, private-object cleanup and log close. Both PNGs used SVG+sips compatibility. Record that rendering route explicitly; native Stata bitmap export and a retained graph-panel display were not established. These results apply to the tested private candidate, not every installed extension or active backend.

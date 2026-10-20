@@ -5,6 +5,10 @@ description: Run annotated Stata do-files in the user's existing shared Workbenc
 
 # Stata visible shared-session workbench
 
+## Real-run lessons: preserve code and verify the actual route
+
+Read [shared execution and delivery lessons](references/shared-session-delivery-lessons.md#validate-upgrades-and-the-actual-execution-protocol) before diagnosing checkpoint or graph failures. A graph-name rewrite must preserve `st_isname()`, `varname()` and Stata macros. Verify the complete upgraded runtime, not a comment marker or an isolated helper. Agent commands and Run Current File have different completion fields; reconcile an incorrect verifier against the original request rather than resending it. The documented PNG/GPH test passed through SVG+sips compatibility and does not establish native Stata bitmap recovery.
+
 ## Recovery first: caller trust, terminal and original instance
 
 For a cmux desktop rejection, `stdout is not a terminal`, onboarding loop or
