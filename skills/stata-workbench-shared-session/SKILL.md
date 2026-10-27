@@ -5,6 +5,15 @@ description: Run annotated Stata do-files in the user's existing shared Workbenc
 
 # Stata visible shared-session workbench
 
+## Cross-platform development and native acceptance
+
+Read [cross-platform acceptance lessons](references/cross-platform-acceptance.md)
+before changing Windows/Mac adapters, packaging, restored Terminal output or graph
+preview. Record the exact version for each native result. A shared verifier and
+three-platform CI do not establish licensed Windows desktop acceptance; a source
+reference build does not establish parity with the maintained runtime. Keep
+research definitions and CFPS update logic in their separate domain skill.
+
 ## Real-run lessons: preserve code and verify the actual route
 
 Read [shared execution and delivery lessons](references/shared-session-delivery-lessons.md#validate-upgrades-and-the-actual-execution-protocol) before diagnosing checkpoint or graph failures. A graph-name rewrite must preserve `st_isname()`, `varname()` and Stata macros. Verify the complete upgraded runtime, not a comment marker or an isolated helper. Agent commands and Run Current File have different completion fields; reconcile an incorrect verifier against the original request rather than resending it. The documented PNG/GPH test passed through SVG+sips compatibility and does not establish native Stata bitmap recovery.

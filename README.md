@@ -11,6 +11,10 @@ For macOS/cmux recovery, read the [signature, terminal and permission incident r
 It includes the actual RTK TTY repair, original-session resume checks and separate
 desktop/profile/backend acceptance. Documentation does not certify a live runtime.
 No per-stage approval prompts: user interventions are explicit controls.
+For Windows/Mac development and GUI acceptance, read
+[cross-platform acceptance lessons](skills/stata-workbench-shared-session/references/cross-platform-acceptance.md).
+It records the native graph-preview fixes, actual Windows CI boundaries and
+version-specific Mac results; the candidate protocol pairing remains PENDING.
 By default, show the exact execution do-file and real Stata Terminal side by side.
 If the user permits covering, hiding or minimizing the existing window, keep the
 shared execution and identity checks while recording physical visibility separately.
