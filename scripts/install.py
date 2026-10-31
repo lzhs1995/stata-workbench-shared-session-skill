@@ -25,7 +25,8 @@ def install(prefix, user_root, apply=False):
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     plan = {"version": version, "destination": str(dest), "apply": apply,
             "routes": [{"path": str(p), "backup": str(p.with_name(p.name + ".backup-" + stamp))} for p in routes],
-            "runtimeTouched": False, "liveAcceptance": "PENDING"}
+            "runtimeTouched": False,
+            "runtime": json.loads((ROOT / "runtime-compatibility.json").read_bytes())["runtime"]["tag"]}
     if not apply:
         return plan
     if dest.exists():
@@ -36,7 +37,7 @@ def install(prefix, user_root, apply=False):
     # Receipt tools must be reachable from the installed skill, not only a clone.
     checks = dest / "skills/stata-workbench-shared-session/scripts"
     checks.mkdir(exist_ok=True)
-    for name in ("completion_check.py", "empirical_trace.py"):
+    for name in ("completion_check.py", "empirical_trace.py", "rc745_receipt_check.py"):
         shutil.copy2(ROOT / "scripts" / name, checks / name)
     shutil.copy2(ROOT / "runtime-compatibility.json", dest / "runtime-compatibility.json")
     for row in plan["routes"]:

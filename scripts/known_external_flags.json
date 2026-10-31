@@ -1,0 +1,46 @@
+{
+  "schema": "stata-workbench-skill-known-flags/1",
+  "note": "Options the skill may mention that are not argparse options of the pinned runtime tools or of scripts/*.py. external = belongs to another program; historical = documented as NOT available in the pinned runtime (inline mention only, never in a fenced command block). Keep this list short; every entry needs a reason.",
+  "options": {
+    "--version": {
+      "category": "external",
+      "owner": "VS Code CLI (code --version)",
+      "reason": "Windows check that `code` resolves to VS Code"
+    },
+    "--verify": {
+      "category": "external",
+      "owner": "codesign",
+      "reason": "desktop recovery record, caller signature check"
+    },
+    "--strict": {
+      "category": "external",
+      "owner": "codesign",
+      "reason": "desktop recovery record, caller signature check"
+    },
+    "--check-terminal": {
+      "category": "external",
+      "owner": "local operator launcher in the desktop recovery record",
+      "reason": "historical incident tooling, not the runtime"
+    },
+    "--allow-hidden": {
+      "category": "historical",
+      "owner": "none",
+      "reason": "documented as an option that must not be invented"
+    },
+    "--task": {
+      "category": "historical",
+      "owner": "candidate client before rc.7.45",
+      "reason": "absent from rc.7.45 shared_stata.py"
+    },
+    "--control": {
+      "category": "historical",
+      "owner": "candidate client before rc.7.45",
+      "reason": "absent from rc.7.45 shared_stata.py"
+    },
+    "--resume-from": {
+      "category": "historical",
+      "owner": "candidate client before rc.7.45",
+      "reason": "absent from rc.7.45 shared_stata.py"
+    }
+  }
+}

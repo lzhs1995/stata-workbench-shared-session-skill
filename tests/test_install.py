@@ -28,6 +28,10 @@ class InstallerTests(unittest.TestCase):
             self.assertEqual((Path(plan["routes"][0]["backup"]) / "SKILL.md").read_text(), "original")
             self.assertTrue(Path(plan["routes"][1]["backup"]).is_symlink())
             self.assertEqual(claude.resolve(), agents.resolve())
+            installed = claude.resolve() / "scripts"
+            for name in ("completion_check.py", "empirical_trace.py", "rc745_receipt_check.py"):
+                self.assertTrue((installed / name).is_file(), name)
+            self.assertEqual(plan["runtime"], "v0.1.3-rc.7.45")
             with self.assertRaises(FileExistsError):
                 installer.install(root / "store", root, True)
 

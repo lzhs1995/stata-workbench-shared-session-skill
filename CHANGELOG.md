@@ -1,3 +1,26 @@
+## 0.1.0-dev.7 — rc.7.45 full refresh, 2026-10-31
+
+Pair the skill with runtime `v0.1.3-rc.7.45` (tag commit `fa76d6db`, bundle
+`f02ae627…`, VSIX `b371bc61…`). The `visible-cowork/1` candidate pairing is
+retired: rc.7.45 has no co-working ticket route; the agent route is
+`tools/shared_stata.py` with one POST.
+
+- SKILL.md rewritten in order of use: who runs the code, a three-minute start on
+  macOS and Windows, every client option (checked against argparse), editor
+  command ids, Stop and what to check after it, verdicts and exit codes,
+  troubleshooting, rc.7.45 known limitations, platform notes, working rules.
+- Removed options that rc.7.45 does not have (`--task`, `--control`,
+  `--resume-from`) from command examples; `workflow.md` now describes staged work
+  as one saved do-file per call.
+- New `scripts/rc745_receipt_check.py` re-checks an rc.7.45 receipt offline;
+  `completion_check.py` remains for earlier candidate receipts.
+- New `scripts/runtime_contract_check.py` (CI): every documented option and
+  command must exist in the pinned runtime, pins must match the checkout, and a
+  check that inspected nothing fails. CI checks out the runtime at the pinned tag
+  and runs on Ubuntu and macOS with Python 3.14.
+- `runtime-compatibility.json` schema 2 with runtime tag, commit, bundle and VSIX
+  hashes and per-platform results.
+
 ## 0.1.0-dev.6 — cross-platform acceptance guidance, 2026-10-27
 
 Add native Windows/Mac adapter and evidence boundaries, Windows ZIP replacement,

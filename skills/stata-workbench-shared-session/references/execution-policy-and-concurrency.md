@@ -83,7 +83,7 @@ check complete coordinates and values rather than rejecting by name alone.
 The underlying local research experience used a pinned
 `0.1.3-rc.7.43-dev.1` instance and a task-specific occlusion-permitted adapter,
 with single-POST receipts and separately reported physical visibility. It does
-not certify public `rc.7.39`, the PENDING `visible-cowork/1` pair, all hidden/
+not certify public `rc.7.39`, any later runtime (rc.7.45 included), all hidden/
 minimized states or two simultaneous Stata instances. This update adds operating
 guidance only; retain runtime/client pins and version source, local installation,
 loaded extension and live research acceptance separately.

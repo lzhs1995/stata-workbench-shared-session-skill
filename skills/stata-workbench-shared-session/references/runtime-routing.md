@@ -1,21 +1,27 @@
-# Installed runtime, candidate protocol and research evidence
+# Which runtime is installed, and which client to use
 
-Skill and runtime versions are separate. `runtime-compatibility.json` records a
-candidate pair and its acceptance status; `PENDING` does not authorize deployment
-or certify that the current Workbench exposes that protocol.
+Skill and runtime are versioned separately. This skill describes runtime
+`v0.1.3-rc.7.45`; its pins are in `runtime-compatibility.json` at the skill
+repository root.
 
-First inspect the existing formal profile, backend and installed guide. If it
-supports and has accepted `visible-cowork/1`, use its matching prepare/dispatch
-client. Otherwise keep the documented saved-file route, preserving its transport
-receipt and separately recording observed source/Terminal visibility. Do not
-invent candidate tickets for legacy runs or call transport-only PASS visibility.
-A candidate-specific checker consumes candidate receipts; it does not reopen
-completed legacy work for fields the old producer never wrote.
+## Check before the first run
 
-Skill updates may add documentation and offline checks without updating Stata.
-Record source revision, installed guide/checker, plugin and loaded backend
-separately. Do not reset permissions, create another profile, replace the backend
-or rerun research just to make version labels equal.
+1. Installed VSIX version: the tools at tag `v0.1.3-rc.7.45` hash the installed
+   bundle before connecting. `--status` then prints `BLOCKED` with
+   `candidate identity mismatch` or `installed version mismatch`; `--doctor`
+   reports `NEEDS_ATTENTION` with the same text in its `instance` check. Either
+   means the installed extension is not rc.7.45.
+2. If the person runs another version, use a runtime checkout at **that**
+   version's tag and that version's README. Do not mix tools and extension
+   versions, and do not upgrade the person's extension to make labels match.
+3. rc.7.45 has no co-working ticket protocol. The bundle contains no
+   `visible-cowork` route. Use the saved-file route (`--file`) and record
+   transport (receipt) and observed visibility separately.
+
+Record separately: skill version, runtime source revision, installed VSIX,
+loaded extension (from `--status`) and backend. Do not reset permissions,
+create another profile, replace the backend or rerun research only to make
+version labels equal.
 
 ## Portable evidence lessons
 
@@ -30,7 +36,8 @@ dependencies fail. Preserve required roots or declare a new entry and mapping;
 do not edit a historical gate to claim portability. Hashes certify bytes, not
 program execution.
 
-Portable checker 1.1 accepts compound `row_keys`, exact key-array `expected_rows`,
-optional `expected_n` and `expected_cell_rows`. Use current model/term/group/wave
-identities, not a past chapter's fixed row count. It consumes saved CSVs and
-does not perform study coding. Precision, display and tolerance stay separate.
+Portable checker 1.1 (`scripts/empirical_trace.py`) accepts compound `row_keys`,
+exact key-array `expected_rows`, optional `expected_n` and `expected_cell_rows`.
+Use current model/term/group/wave identities, not a past chapter's fixed row
+count. It consumes saved CSVs and does not perform study coding. Precision,
+display and tolerance stay separate.

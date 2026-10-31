@@ -1,5 +1,9 @@
 # Windows/Mac acceptance and development lessons
 
+> Version note (2026-10-31): these lessons were recorded during the dev.5–dev.8
+> builds. Current rc.7.45 platform results are in the runtime README *Platform
+> status*; this skill's SKILL.md sections 3, 8 and 9 summarize them.
+
 Use this when developing or validating the shared-session runtime. Read the
 installed runtime guide and its exact identity manifest first. This document is
 operating guidance; installing it does not install a candidate runtime or adopt
