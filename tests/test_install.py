@@ -55,7 +55,7 @@ class InstallerTests(unittest.TestCase):
                     installer.install(root / "store", root, True)
             self.assertEqual((route / "SKILL.md").read_text(), "original")
             self.assertFalse(route.is_symlink())
-            dest = next((root / "store").iterdir())
+            dest = next(p for p in (root / "store").iterdir() if p.name != "route-backups")
             self.assertTrue((dest / "installation-plan.json").is_file())
             self.assertTrue((dest / "installation-failure.json").is_file())
             self.assertFalse((dest / "installation.json").exists())
