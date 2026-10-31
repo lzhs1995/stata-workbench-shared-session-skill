@@ -20,6 +20,9 @@ retired: rc.7.45 has no co-working ticket route; the agent route is
   and runs on Ubuntu and macOS with Python 3.14.
 - `runtime-compatibility.json` schema 2 with runtime tag, commit, bundle and VSIX
   hashes and per-platform results.
+- The installer now keeps route backups under `<prefix>/route-backups/<stamp>/`
+  instead of next to the route: a `.backup-*` sibling inside a skills folder still
+  contains a SKILL.md with this skill's name.
 
 ## 0.1.0-dev.6 — cross-platform acceptance guidance, 2026-10-27
 

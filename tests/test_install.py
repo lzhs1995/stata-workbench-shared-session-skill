@@ -32,6 +32,11 @@ class InstallerTests(unittest.TestCase):
             for name in ("completion_check.py", "empirical_trace.py", "rc745_receipt_check.py"):
                 self.assertTrue((installed / name).is_file(), name)
             self.assertEqual(plan["runtime"], "v0.1.3-rc.7.45")
+            for row in plan["routes"]:
+                backup = Path(row["backup"])
+                self.assertTrue(backup.is_relative_to((root / "store").resolve()), backup)
+                siblings = [p.name for p in Path(row["path"]).parent.iterdir()]
+                self.assertEqual(siblings, ["stata-workbench-shared-session"], siblings)
             with self.assertRaises(FileExistsError):
                 installer.install(root / "store", root, True)
 
