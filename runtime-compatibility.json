@@ -1,6 +1,6 @@
 {
   "schema": "stata-workbench-skill-compatibility/1",
-  "skillVersion": "0.1.0-dev.5",
+  "skillVersion": "0.1.0-dev.6",
   "runtimeCandidateId": "visible-cowork-1-dev.6",
   "runtimeRepository": "https://github.com/lzhs1995/stata-workbench-shared-session",
   "requiredCoworkProtocol": "visible-cowork/1",

@@ -1,3 +1,11 @@
+## 0.1.0-dev.6 — cross-platform acceptance guidance, 2026-10-27
+
+Add native Windows/Mac adapter and evidence boundaries, Windows ZIP replacement,
+actual bundle-scope and Terminal DOM failures, same-backend cancellation/queue
+lessons, and separate upstream reference-build claims. The runtime protocol pair
+and its PENDING status are unchanged; this documentation does not replace a live
+Workbench or certify a Windows desktop.
+
 ## Recovery guide 2026-10-17
 
 Record the three-stage cmux incident: an ad-hoc Codex caller rejected by -67050,
