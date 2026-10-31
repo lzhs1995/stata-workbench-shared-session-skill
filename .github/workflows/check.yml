@@ -4,11 +4,29 @@ permissions:
   contents: read
 jobs:
   offline:
-    runs-on: ubuntu-latest
+    name: Offline (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15]
+    env:
+      PYTHONUTF8: '1'
+      STATA_WORKBENCH_RUNTIME: ${{ github.workspace }}/runtime
     steps:
       - uses: actions/checkout@v4
+      - name: Pinned runtime (tag from runtime-compatibility.json)
+        id: pin
+        run: python3 -c "import json; print('tag=' + json.load(open('runtime-compatibility.json'))['runtime']['tag'])" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: lzhs1995/stata-workbench-shared-session
+          ref: ${{ steps.pin.outputs.tag }}
+          path: runtime
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Synthetic installer and independent-receipt controls (no Stata)
+          python-version: '3.14'
+      - name: Synthetic installer, receipt and contract tests (no Stata)
         run: python -B -m unittest discover -s tests -v
+      - name: Skill documents only options, commands and pins of the pinned runtime
+        run: python -B scripts/runtime_contract_check.py --runtime-root runtime

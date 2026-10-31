@@ -23,9 +23,14 @@ def install(prefix, user_root, apply=False):
     source = ROOT / "skills/stata-workbench-shared-session"
     routes = [Path(user_root) / client / "skills/stata-workbench-shared-session" for client in (".claude", ".agents", ".codex")]
     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    # Backups live under the prefix, never next to the route: a sibling directory
+    # inside a skills folder still holds a SKILL.md with the same name, so a client
+    # scanning skills/*/SKILL.md would see several versions of this skill.
+    backups = Path(prefix).resolve() / "route-backups" / stamp
     plan = {"version": version, "destination": str(dest), "apply": apply,
-            "routes": [{"path": str(p), "backup": str(p.with_name(p.name + ".backup-" + stamp))} for p in routes],
-            "runtimeTouched": False, "liveAcceptance": "PENDING"}
+            "routes": [{"path": str(p), "backup": str(backups / p.parts[-3] / p.name)} for p in routes],
+            "runtimeTouched": False,
+            "runtime": json.loads((ROOT / "runtime-compatibility.json").read_bytes())["runtime"]["tag"]}
     if not apply:
         return plan
     if dest.exists():
@@ -36,7 +41,7 @@ def install(prefix, user_root, apply=False):
     # Receipt tools must be reachable from the installed skill, not only a clone.
     checks = dest / "skills/stata-workbench-shared-session/scripts"
     checks.mkdir(exist_ok=True)
-    for name in ("completion_check.py", "empirical_trace.py"):
+    for name in ("completion_check.py", "empirical_trace.py", "rc745_receipt_check.py"):
         shutil.copy2(ROOT / "scripts" / name, checks / name)
     shutil.copy2(ROOT / "runtime-compatibility.json", dest / "runtime-compatibility.json")
     for row in plan["routes"]:
@@ -47,6 +52,7 @@ def install(prefix, user_root, apply=False):
         for index, row in enumerate(plan["routes"]):
             target, backup = Path(row["path"]), Path(row["backup"])
             target.parent.mkdir(parents=True, exist_ok=True)
+            backup.parent.mkdir(parents=True, exist_ok=True)
             if backup.exists() or backup.is_symlink():
                 raise FileExistsError(str(backup))
             if target.exists() or target.is_symlink():

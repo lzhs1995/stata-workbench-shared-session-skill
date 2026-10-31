@@ -1,31 +1,24 @@
 # Stata Workbench Shared Session — operating skill
 
-Independent, versioned operating protocol for automatic visible human/AI Stata
-work. Runtime: https://github.com/lzhs1995/stata-workbench-shared-session.
+Operating skill for agents that run Stata in the user's existing
+[Stata Workbench Shared Session](https://github.com/lzhs1995/stata-workbench-shared-session),
+so that the person and the agent share one visible Stata session.
 
-**Development candidate, not a new formal acceptance.** Requires the runtime
-`visible-cowork/1` protocol. Old transport-only PASS cannot certify this workflow.
+This version describes runtime **v0.1.3-rc.7.45** (pre-release). Pins, platform
+results and the agent route are in `runtime-compatibility.json`; CI checks the
+skill against a checkout of that tag.
 
-Start with [SKILL.md](skills/stata-workbench-shared-session/SKILL.md).
-For macOS/cmux recovery, read the [signature, terminal and permission incident record](skills/stata-workbench-shared-session/references/desktop-auth-terminal-recovery.md).
-It includes the actual RTK TTY repair, original-session resume checks and separate
-desktop/profile/backend acceptance. Documentation does not certify a live runtime.
-No per-stage approval prompts: user interventions are explicit controls.
-For Windows/Mac development and GUI acceptance, read
-[cross-platform acceptance lessons](skills/stata-workbench-shared-session/references/cross-platform-acceptance.md).
-It records the native graph-preview fixes, actual Windows CI boundaries and
-version-specific Mac results; the candidate protocol pairing remains PENDING.
-By default, show the exact execution do-file and real Stata Terminal side by side.
-If the user permits covering, hiding or minimizing the existing window, keep the
-shared execution and identity checks while recording physical visibility separately.
-Read [execution policy and concurrency](skills/stata-workbench-shared-session/references/execution-policy-and-concurrency.md).
-Read [execution and delivery lessons](skills/stata-workbench-shared-session/references/shared-session-delivery-lessons.md)
-for author DO preservation, actual saved-data inventories, original-request
-settlement and correctly attributed resource budgets.
-This documentation update does not add hidden-mode or multi-instance support to
-an incompatible client, change the runtime, or certify concurrent Stata instances.
+Start with [SKILL.md](skills/stata-workbench-shared-session/SKILL.md). It is
+ordered for use: what the runtime is, who runs the code, a three-minute start on
+macOS and Windows, the full client options, Stop, receipts and exit codes,
+troubleshooting, known limitations and platform notes. The references cover
+staged work, receipts, author DO preservation, storage, exports, replay and
+desktop recovery.
 
-Installation is separate from runtime deployment:
+## Install the skill
+
+Installation is separate from the runtime: it never updates Workbench, restarts
+a backend or contacts another agent.
 
 ```sh
 python3 -B scripts/install.py --prefix /absolute/skill-storage
@@ -33,10 +26,23 @@ python3 -B scripts/install.py --prefix /absolute/skill-storage
 python3 -B scripts/install.py --prefix /absolute/skill-storage --apply
 ```
 
-Installer preserves prior Claude/Codex/.agents routes in timestamped backups,
-never updates Workbench, restarts a backend or contacts another agent.
-Run `python3 -B -m unittest discover -s tests` for local harness tests.
-Version and platform limits are in `runtime-compatibility.json`.
+The installer copies the skill and its receipt checkers into
+`<prefix>/<skillVersion>/`, then points the Claude, Codex and `.agents` skill
+routes at it. Existing routes are kept as timestamped backups; an existing
+version directory is never overwritten.
 
-Repository contains operational code and synthetic tests only. Never add research
-data, local receipts, private backup files or credentials to public commits.
+## Checks
+
+```sh
+python3 -B -m unittest discover -s tests
+# With a runtime checkout at the pinned tag:
+STATA_WORKBENCH_RUNTIME=/abs/runtime python3 -B -m unittest discover -s tests
+python3 -B scripts/runtime_contract_check.py --runtime-root /abs/runtime
+```
+
+`runtime_contract_check.py` fails when the skill mentions a client option or a
+`stata-workbench.*` command that the pinned runtime does not have, when the
+pins differ from the checkout, or when it checked nothing.
+
+This repository contains operating guidance, offline checkers and synthetic
+tests only. Never add research data, receipts, private backups or credentials.
