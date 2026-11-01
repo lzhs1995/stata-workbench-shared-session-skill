@@ -1,3 +1,14 @@
+## Guidance fixes 2026-11-01 (skill version unchanged, 0.1.0-dev.7)
+
+- Section 1: say where `runtime-compatibility.json` really is. "Two directories
+  above this file" holds only for the installed folder itself. On macOS the
+  agent opens a symlink to it; on Windows the junctions point at cc-switch's
+  plain copies, which do not contain the file (checked 2026-11-01).
+- Section 7, window count not 1: check `STATA_WORKBENCH_PROFILE` and
+  `STATA_WORKBENCH_PORT` first, then ask the person to keep one window. In the
+  2026-10-31/11-01 readability test both a Claude and a Codex reader missed the
+  profile/port check.
+
 ## 0.1.0-dev.7 — rc.7.45 full refresh, 2026-10-31
 
 Pair the skill with runtime `v0.1.3-rc.7.45` (tag commit `fa76d6db`, bundle

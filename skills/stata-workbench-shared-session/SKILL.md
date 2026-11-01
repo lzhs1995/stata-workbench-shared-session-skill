@@ -17,8 +17,16 @@ description: Use when an agent must run Stata code in the user's existing Stata 
   reset, a restart or closing VS Code.
 - Runtime repository: https://github.com/lzhs1995/stata-workbench-shared-session
   (tag `v0.1.3-rc.7.45`). The pins this skill was checked against are in
-  `runtime-compatibility.json` at the skill repository root (installed copy: two
-  directories above this file).
+  `runtime-compatibility.json` at the skill repository root. `scripts/install.py
+  --prefix <prefix>` puts it at `<prefix>/<version>/runtime-compatibility.json`,
+  two directories above the installed SKILL.md. The skill folder an agent opens
+  is often a link to that folder or a copy of it, so "two directories above" can
+  miss: on macOS it is a symlink (resolve it with `realpath`); on Windows a skill
+  manager such as cc-switch may hold a plain copy without the file. Then read it
+  from the release directory, for example
+  `~/.local/share/stata-workbench-shared-session-skill/releases/<id>/<version>/`
+  (macOS) or `%USERPROFILE%\.stata-workbench-shared-session-skill\releases\<id>\<version>\`
+  (Windows).
 
 ## 2. First decide who runs the code
 
@@ -195,7 +203,7 @@ repository root in a clone); see [receipts-rc745.md](references/receipts-rc745.m
 | The first run seems slow | The service is starting (section 3). Wait; do not resubmit |
 | HTTP 504 `PRE_RUN_SNAPSHOT_TIMEOUT` on the first run after opening or reloading | Stata took longer than 60 s to start. The code was not sent. Submit it again |
 | `BLOCKED_NO_DISPATCH`: not ready or busy | The person or another client is running something. Wait with `--busy-policy wait --max-wait <s>`, or ask. Do not queue another long run |
-| `--status` exit 2, window count not 1 | No window, or two windows of the same profile. The person must open exactly one (`--open --workspace <dir>`); never start a second profile to get around it |
+| `--status` exit 2, window count not 1 | First check that `STATA_WORKBENCH_PROFILE` and `STATA_WORKBENCH_PORT` name the person's real profile and port (section 3); a wrong value gives a wrong count. If they are right, there is no window or there are two windows of that profile: ask the person to keep exactly one (`--open --workspace <dir>` opens one). Do not close their windows yourself, and never start a second profile or another Stata to get around it |
 | Status bar **Stata: STALE**; runs return HTTP 423 `recovery-required` | A force reset could not confirm the backend. Run the verified recovery **once**: `POST http://127.0.0.1:<port>/recovery-smoke`. It runs a fixed marker command and unlocks only after rc 0 and the marker in the log. Do not kill Stata or delete the session |
 | A long script stalls or times out | Reconcile the original request, its receipt, the raw log and outputs first. A timeout is not proof that Stata did not run. See [storage and log recovery](references/storage-and-log-recovery.md) |
 | Port already in use | Another editor owns it. Choose a free `stataMcp.visibleBridgePort` and the same `STATA_WORKBENCH_PORT`; never stop the other editor |
