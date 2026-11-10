@@ -1,3 +1,21 @@
+## 0.1.0-dev.8 — presentation, agent entry and contract coverage, 2026-11-10
+
+Runtime pairing unchanged: `v0.1.3-rc.7.45` (commit `fa76d6db`, bundle
+`f02ae627…`, VSIX `b371bc61…`).
+
+- SKILL.md sections 2, 10 and 11: before changing a `.do` the person already
+  has, show the diff and write only after acceptance. Running an agreed stage
+  needs no new question; `.do` files the agent creates for its own stages are
+  not covered.
+- `scripts/runtime_contract_check.py` now also scans every root `README*.md`
+  and `AGENTS.md`, compares `runtime.commit` with the runtime checkout's HEAD
+  when it is a git checkout, and compares `runtime.vsixSha256` with a file given
+  by `--vsix`. Pins it cannot compare are reported in `notChecked`. New tests
+  cover a bad option or command that appears only in a translation or AGENTS.md,
+  and the commit and VSIX pins.
+- README.zh-CN.md and README.zh-TW.md, a three-language switcher, AGENTS.md
+  (vendor-neutral entry), and an original icon drawn by `media/make_icon.py`.
+
 ## Guidance fixes 2026-11-01 (skill version unchanged, 0.1.0-dev.7)
 
 - Section 1: say where `runtime-compatibility.json` really is. "Two directories

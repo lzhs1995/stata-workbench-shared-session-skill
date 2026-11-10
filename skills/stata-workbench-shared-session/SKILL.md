@@ -41,6 +41,13 @@ Default: write commented `.do` programs, show them, run and check each stage
 automatically. **Do not ask for per-stage approval.** Announce the purpose and
 code changes briefly; the person may watch, edit or press Stop at any time.
 
+**Existing `.do` files are different.** Before changing a `.do` the person or
+another author already has, show the proposed diff and write it only after the
+person accepts it. Running an already agreed stage needs no new question, and
+`.do` files the agent creates for its own stages are not covered. Showing code
+after it was written is not acceptance. This runtime has no edit-review route,
+so the diff and the acceptance happen in the conversation.
+
 Editor commands the person uses (the agent tells them which; it does not press keys):
 
 | Command palette title | Command id | Keys |
@@ -269,6 +276,9 @@ macOS:
   screen. If the person allows covering, hiding or minimizing the window, keep
   running through the same session and record physical visibility separately.
   Losing visibility is not permission to steal focus or rerun work.
+- **Diff before editing an existing `.do`.** Propose the diff, wait for
+  acceptance, then write (section 2). If the file changed in the meantime,
+  propose again against the new version.
 - **Preserve the person's edits.** Never save or discard their unsaved buffer.
   If they edit a file, wait for the saved version, compare it with the last
   executed version, recheck memory and dependencies, then run a new version.
@@ -289,6 +299,7 @@ macOS:
 
 - Start another Stata, backend or VS Code profile to get around a busy, STALE or
   missing session.
+- Change a person's existing `.do` without an accepted diff.
 - Resend a POST whose outcome is unknown, or call `/force-reset` or
   `/panic-kill` without the person's explicit request.
 - Kill Stata, delete the session, or remove lock files that a process holds.
