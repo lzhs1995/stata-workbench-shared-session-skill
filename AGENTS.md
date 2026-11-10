@@ -48,7 +48,8 @@ python3 -B scripts/runtime_contract_check.py --runtime-root /abs/runtime
 ## What has been checked with agents
 
 - Reading: with no prior context, a Claude Code subagent and a Codex session each
-  read only SKILL.md (0.1.0-dev.7) and answered a 10-question operating test
+  read SKILL.md (0.1.0-dev.7) and its linked references within the skill directory,
+  then answered a 10-question operating test
   (19/20 and 17/20; pass line 16, no zero on the safety questions), 2026-10-31
   and 2026-11-01.
 - Install: `scripts/install.py` is covered by synthetic tests on Ubuntu and
