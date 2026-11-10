@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 import unittest
 
@@ -97,6 +98,59 @@ class ContractGate(unittest.TestCase):
     def test_client_constant_mismatch_fails(self):
         out = self.run_gate(GOOD, sha_override="1" * 64)
         self.assertFalse(out["pins"]["clientPinsMatch"])
+
+    def test_translated_readme_and_agents_md_are_checked(self):
+        for name, extra, problem in (("README.zh-TW.md", "```sh\nfoo --nonexistent-audit-flag\n```\n", "UNKNOWN_OPTION"),
+                                     ("README.zh-CN.md", "`shared_stata.py --status`\n", "OPTION_NOT_IN_NAMED_SCRIPT"),
+                                     ("AGENTS.md", "Use `stata-workbench.nonexistentAuditCommand`.\n", "UNKNOWN_COMMAND")):
+            with self.subTest(name), tempfile.TemporaryDirectory() as tmp:
+                runtime, skill = Path(tmp, "runtime"), Path(tmp, "skill")
+                make_skill(skill, GOOD, make_runtime(runtime))
+                (skill / name).write_text(extra, encoding="utf-8")
+                out = gate.check(skill, runtime)
+                self.assertIn(name, out["markdownFiles"])
+                self.assertIn(problem, self.problems(out))
+                self.assertTrue(any(p.get("where", "").startswith(name) for p in out["problems"]), out["problems"])
+
+    def test_commit_pin_compared_only_with_a_git_checkout(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime, skill = Path(tmp, "runtime"), Path(tmp, "skill")
+            make_skill(skill, GOOD, make_runtime(runtime))
+            out = gate.check(skill, runtime)
+            self.assertEqual(out["verdict"], "PASS", out["problems"])
+            self.assertIn("runtime.commit", out["notChecked"])
+            git = ["git", "-C", str(runtime), "-c", "user.name=t", "-c", "user.email=t@example.invalid"]
+            subprocess.run(git[:3] + ["init", "-q"], check=True)
+            subprocess.run(git + ["add", "-A"], check=True)
+            subprocess.run(git + ["commit", "-q", "-m", "synthetic"], check=True)
+            head = subprocess.run(git[:3] + ["rev-parse", "HEAD"], capture_output=True, text=True, check=True).stdout.strip()
+            compat = json.loads((skill / "runtime-compatibility.json").read_text())
+            compat["runtime"]["commit"] = "0" * 40
+            (skill / "runtime-compatibility.json").write_text(json.dumps(compat))
+            out = gate.check(skill, runtime)
+            self.assertFalse(out["pins"]["commitMatchesCheckout"])
+            self.assertIn("PIN_MISMATCH", self.problems(out))
+            compat["runtime"]["commit"] = head
+            (skill / "runtime-compatibility.json").write_text(json.dumps(compat))
+            out = gate.check(skill, runtime)
+            self.assertEqual(out["verdict"], "PASS", out["problems"])
+            self.assertNotIn("runtime.commit", out["notChecked"])
+
+    def test_vsix_pin_compared_only_with_a_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            runtime, skill = Path(tmp, "runtime"), Path(tmp, "skill")
+            make_skill(skill, GOOD, make_runtime(runtime))
+            vsix = Path(tmp, "x.vsix")
+            vsix.write_bytes(b"synthetic vsix")
+            self.assertIn("runtime.vsixSha256", gate.check(skill, runtime)["notChecked"])
+            out = gate.check(skill, runtime, vsix)
+            self.assertFalse(out["pins"]["vsixSha256MatchesFile"])
+            compat = json.loads((skill / "runtime-compatibility.json").read_text())
+            compat["runtime"]["vsixSha256"] = hashlib.sha256(b"synthetic vsix").hexdigest()
+            (skill / "runtime-compatibility.json").write_text(json.dumps(compat))
+            out = gate.check(skill, runtime, vsix)
+            self.assertEqual(out["verdict"], "PASS", out["problems"])
+            self.assertNotIn("runtime.vsixSha256", out["notChecked"])
 
     @unittest.skipUnless(RUNTIME, "set STATA_WORKBENCH_RUNTIME to a v0.1.3-rc.7.45 checkout")
     def test_this_repository_against_pinned_runtime(self):

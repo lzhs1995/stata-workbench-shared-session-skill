@@ -13,7 +13,11 @@ Rules
   options that do not exist), never in a fenced command block.
 - Every `stata-workbench.<id>` must be a command contributed by package.json.
 - runtime-compatibility.json pins must equal the checkout (version, bundle sha256,
-  client constants).
+  client constants). `runtime.commit` is compared with the checkout's HEAD when the
+  runtime root is a git checkout; `runtime.vsixSha256` is compared only with a VSIX
+  passed by --vsix. A pin that could not be compared is listed in "notChecked", so
+  a source archive without .git never counts as commit-verified.
+- Scanned Markdown: skills/**/*.md, README*.md and AGENTS.md at the repository root.
 - Zero checked options or zero checked commands is a FAIL (vacuous gate).
 """
 import argparse
@@ -22,6 +26,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,7 +80,14 @@ def module_constants(path, names):
     return values
 
 
-def check(skill_root, runtime_root):
+def git_head(root):
+    if not (Path(root) / ".git").exists():
+        return None
+    r = subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"], capture_output=True, text=True)
+    return r.stdout.strip() if r.returncode == 0 else None
+
+
+def check(skill_root, runtime_root, vsix=None):
     skill_root, runtime_root = Path(skill_root).resolve(), Path(runtime_root).resolve()
     compat = json.loads((skill_root / "runtime-compatibility.json").read_bytes())
     allow = json.loads((skill_root / "scripts/known_external_flags.json").read_bytes())["options"]
@@ -85,7 +97,8 @@ def check(skill_root, runtime_root):
     runtime_options = set().union(*argparse_options(sorted((runtime_root / "tools").glob("*.py"))).values())
     package = json.loads((runtime_root / "package.json").read_bytes())
     commands = {c["command"] for c in package.get("contributes", {}).get("commands", [])}
-    files = sorted((skill_root / "skills").rglob("*.md")) + [skill_root / "README.md"]
+    files = sorted((skill_root / "skills").rglob("*.md")) + sorted(skill_root.glob("README*.md"))
+    files += [p for p in [skill_root / "AGENTS.md"] if p.exists()]
     problems, used_allow = [], set()
     flags_checked = commands_checked = 0
     for path, line, kind, text in markdown_mentions(files):
@@ -121,6 +134,16 @@ def check(skill_root, runtime_root):
         "bundleSha256MatchesCheckout": runtime.get("bundleSha256") == bundle,
         "clientPinsMatch": client.get("VERSION") == package.get("version") and client.get("BUNDLE_SHA256") == bundle,
     }
+    not_checked = []
+    head = git_head(runtime_root)
+    if head is None:
+        not_checked.append("runtime.commit")
+    else:
+        pins["commitMatchesCheckout"] = runtime.get("commit") == head
+    if vsix is None:
+        not_checked.append("runtime.vsixSha256")
+    else:
+        pins["vsixSha256MatchesFile"] = runtime.get("vsixSha256") == sha256(vsix)
     problems += [{"problem": "PIN_MISMATCH", "check": k} for k, ok in pins.items() if not ok]
     if not runtime_options or not commands:
         problems.append({"problem": "VACUOUS_RUNTIME", "runtimeOptions": len(runtime_options), "commands": len(commands)})
@@ -129,6 +152,7 @@ def check(skill_root, runtime_root):
     return {"verdict": "PASS" if not problems else "FAIL", "runtimeRoot": str(runtime_root),
             "optionsChecked": flags_checked, "commandsChecked": commands_checked,
             "runtimeOptions": len(runtime_options), "runtimeCommands": len(commands), "pins": pins,
+            "notChecked": not_checked, "markdownFiles": [str(p.relative_to(skill_root)) for p in files],
             "unusedAllowEntries": sorted(set(allow) - used_allow), "problems": problems}
 
 
@@ -137,7 +161,8 @@ if __name__ == "__main__":
     parser.add_argument("--runtime-root", type=Path, required=True,
                         help="checkout of lzhs1995/stata-workbench-shared-session at the pinned tag")
     parser.add_argument("--skill-root", type=Path, default=ROOT)
+    parser.add_argument("--vsix", type=Path, help="released VSIX to compare with runtime.vsixSha256")
     args = parser.parse_args()
-    out = check(args.skill_root, args.runtime_root)
+    out = check(args.skill_root, args.runtime_root, args.vsix)
     print(json.dumps(out, ensure_ascii=False, indent=2))
     sys.exit(0 if out["verdict"] == "PASS" else 2)

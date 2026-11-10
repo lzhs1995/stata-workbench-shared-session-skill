@@ -1,5 +1,9 @@
 # Stata Workbench Shared Session — operating skill
 
+<img src="media/icon.png" alt="Operating skill icon: a guide page with a check mark" width="96">
+
+English | [简体中文](README.zh-CN.md) | [繁體中文](README.zh-TW.md)
+
 Operating skill for agents that run Stata in the user's existing
 [Stata Workbench Shared Session](https://github.com/lzhs1995/stata-workbench-shared-session),
 so that the person and the agent share one visible Stata session.
@@ -14,6 +18,8 @@ macOS and Windows, the full client options, Stop, receipts and exit codes,
 troubleshooting, known limitations and platform notes. The references cover
 staged work, receipts, author DO preservation, storage, exports, replay and
 desktop recovery.
+
+Agents: [AGENTS.md](AGENTS.md) lists which file to read for which task.
 
 <!-- portfolio-stata-navigation-20261110 -->
 ## Project family · 專案導覽
@@ -55,11 +61,16 @@ python3 -B -m unittest discover -s tests
 # With a runtime checkout at the pinned tag:
 STATA_WORKBENCH_RUNTIME=/abs/runtime python3 -B -m unittest discover -s tests
 python3 -B scripts/runtime_contract_check.py --runtime-root /abs/runtime
+# Also compare the released VSIX with its pin:
+python3 -B scripts/runtime_contract_check.py --runtime-root /abs/runtime --vsix /abs/stata-workbench-shared-session-0.1.3-rc.7.45.vsix
 ```
 
-`runtime_contract_check.py` fails when the skill mentions a client option or a
-`stata-workbench.*` command that the pinned runtime does not have, when the
-pins differ from the checkout, or when it checked nothing.
+`runtime_contract_check.py` fails when SKILL.md, its references, a README or
+AGENTS.md mentions a client option or a `stata-workbench.*` command that the
+pinned runtime does not have, when a pin differs from the checkout (version,
+tag, bundle, client constants, and the tag commit when the runtime root is a git
+checkout), or when it checked nothing. `vsixSha256` is compared only with a
+file passed by `--vsix`. Pins it could not compare are listed in `notChecked`.
 
 This repository contains operating guidance, offline checkers and synthetic
 tests only. Never add research data, receipts, private backups or credentials.
